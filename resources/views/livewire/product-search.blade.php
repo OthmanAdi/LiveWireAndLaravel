@@ -4,17 +4,25 @@
             Product Search
         </h1>
 
-        {{--        WireUI Search field--}}
-        <x-wireui.input
-            wire:model.debounce.300ms="search"
-            placeholder="Search for products..."
-            icon="search"
-            class="mb-4"/>
+        {{--        Standard input field--}}
+        <div class="flex gap-2 mb-4">
+            <input
+                wire:model.debounce.300ms="search"
+                placeholder="Search for products..."
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"/>
+
+            <button
+                wire:click="$refresh"
+                class="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transform hover:scale-105 transition duration-200 shadow-lg"
+            >
+                🔍 Search
+            </button>
+        </div>
 
         {{--        Results List--}}
         <div class="space-y-4">
             @if($products->isEmpty())
-                <div class="p-4 bg-yellow-400 text-shadow-yellow-800 rounded">
+                <div class="p-4 bg-yellow-400 text-yellow-800 rounded">
                     No products were found matching your search input
                 </div>
             @endif
